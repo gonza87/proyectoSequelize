@@ -87,9 +87,10 @@ console.log("Las tablas se crearon");
 });
 //rutas
 app.get("/", async (req, res)=>{
-    const articles = await Article.findAll();
-    res.json(articles)
+    const articles = await Article.findAll({order: [["createdAt", "DESC"]]});
+    res.json(articles);
 });
 app.listen(3000, ()=>{
     console.log("Servidor escuchando en puerto 3000");
+    console.log("http://localhost:3000");
 })
