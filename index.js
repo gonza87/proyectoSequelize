@@ -86,8 +86,9 @@ sequelize.sync().then(()=>{
 console.log("Las tablas se crearon");
 });
 //rutas
-app.get("/", (req, res)=>{
-    res.json("Home")
+app.get("/", async (req, res)=>{
+    const articles = await Article.findAll();
+    res.json(articles)
 });
 app.listen(3000, ()=>{
     console.log("Servidor escuchando en puerto 3000");
