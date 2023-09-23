@@ -1,8 +1,11 @@
 const {Sequelize, Model, DataTypes, BelongsTo} = require("sequelize");
 const express = require("express");
 const app = express();
+app.set("view engine", "ejs");
 
 app.use(express.urlencoded({extended: true}));
+
+app.use(express.static("public"));
 
 const sequelize = new Sequelize("dbsequelize", "root", "root",{
     host: "127.0.0.1",
@@ -93,6 +96,15 @@ app.get("/", async (req, res)=>{
 app.get("/:id", async (req, res)=>{
     res.json("Articulo por id");
 });
+
+//rutaVistaUno
+app.get("/home", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html"); // Ruta al archivo HTML
+});
+
+
+
+
 
 app.listen(3000, ()=>{
     console.log("Servidor escuchando en puerto 3000");
