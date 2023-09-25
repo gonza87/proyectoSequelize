@@ -9,7 +9,7 @@ app.use(express.static(__dirname + "/public"));
 
 
 
-const sequelize = new Sequelize("dbsequelize", "root", "rootroot",{
+const sequelize = new Sequelize("dbsequelize", "root", "root",{
     host: "127.0.0.1",
     port: 3306,
     dialect: "mysql",
