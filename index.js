@@ -5,7 +5,7 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({extended: true}));
 
-app.use(express.static("public"));
+
 
 const sequelize = new Sequelize("dbsequelize", "root", "root",{
     host: "127.0.0.1",
@@ -97,10 +97,7 @@ app.get("/:id", async (req, res)=>{
     res.json("Articulo por id");
 });
 
-//rutaVistaUno
-app.get("/home", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html"); // Ruta al archivo HTML
-});
+
 
 
 
