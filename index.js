@@ -9,7 +9,7 @@ app.use(express.static(__dirname + "/public"));
 
 
 
-const sequelize = new Sequelize("dbsequelize", "root", "root",{
+const sequelize = new Sequelize("dbsequelize", "root", "rootroot",{
     host: "127.0.0.1",
     port: 3306,
     dialect: "mysql",
@@ -93,8 +93,12 @@ console.log("Las tablas se crearon");
 
 //ruta home//
 app.get("/home", (req, res) => {
-  res.render("home", { pageTitle: "Mi Página de Inicio" });
+  res.render("home");
 });
+
+app.get("/article", (req, res) => {
+    res.render("article")
+}); 
 
 //rutas
 app.get("/", async (req, res)=>{
