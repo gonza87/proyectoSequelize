@@ -4,6 +4,8 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({extended: true}));
+app.set("views", __dirname + "/views");
+app.use(express.static(__dirname + "/public"));
 
 
 
@@ -88,6 +90,12 @@ Comment.belongsTo(Article);
 sequelize.sync().then(()=>{
 console.log("Las tablas se crearon");
 });
+
+//ruta home//
+app.get("/home", (req, res) => {
+  res.render("home", { pageTitle: "Mi Página de Inicio" });
+});
+
 //rutas
 app.get("/", async (req, res)=>{
     const articles = await Article.findAll({order: [["createdAt", "DESC"]], include: [{model: Author}]});
@@ -96,6 +104,7 @@ app.get("/", async (req, res)=>{
 app.get("/:id", async (req, res)=>{
     res.json("Articulo por id");
 });
+
 
 
 
