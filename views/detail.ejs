@@ -20,7 +20,7 @@
   </head>
   <body>
     <%- include("partials/nav") %>
-    <div><img id="fondo" src="/img/fondo.PNG" alt="fondo" /></div>
+    
     <section class="container">
       <div class="cajaArticulos text-center d-flex justify-content-center">
         <div class="card" style="width: 30rem">
@@ -28,6 +28,8 @@
           <div class="card-body">
             <h5 class="card-title"><%= article.title %></h5>
             <p class="card-text"><%= article.content %></p>
+            <p class="card-text"><%= article.author.firstname %></p>
+
           </div>
         </div>
       </div>
