@@ -128,6 +128,8 @@ Comment.init(
 //Relaciones
 Article.belongsTo(Author);
 Comment.belongsTo(Article);
+Article.hasMany(Comment);
+
 //Creacion de tablas
 sequelize.sync().then(() => {
   console.log("Las tablas se crearon");
@@ -171,11 +173,13 @@ app.get("/admin", async (req, res) => {
 
 app.get("/article/:id", async (req, res) => {
   const article = await Article.findByPk(req.params.id, {
-    include: [{ model: Author},{model: Comment }]
+    include: [{ model: Author}, { model: Comment}]
   });
-
- res.render("detail", { article });
+  //console.log(article)
+res.json(article)
+ //res.render("detail", { article });
 });
+
 
 
 
