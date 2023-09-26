@@ -170,7 +170,7 @@ app.get("/admin", async (req, res) => {
 });
 
 app.get("/article/:id", async (req, res) => {
-  const article = await Article.findByPk(req.params.id)({
+  const article = await Article.findByPk(req.params.id, {
     include: [{ model: Author }]
   });
 
