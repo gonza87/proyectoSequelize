@@ -44,29 +44,33 @@
               </tr>
             </thead>
             <tbody>
-              
-              <tr>
-                <th scope="row">article.id</th>
-                <td>article.title</td>
-                <td>article.content</td>
-                <td><img id="imgtabla" src="" alt="" /></td>
-                <td>article.createdAt</td>
-                <td>Name</td>
-                <td>
-                  <div>
-                    <button type="button" class="btn btn-primary">
-                      Editar
-                    </button>
-                  </div>
-                  <div>
-                    <a href="/"
-                      ><button type="button" class="btn btn-danger">
-                        Eliminar
-                      </button></a
-                    >
-                  </div>
-                </td>
-              </tr>
+              <% articles.forEach(article => { %>
+
+                <tr>
+                  <th scope="row"> <%= article.id %></th>
+                  <td><%= article.title %></td>
+                  <td><%= article.content %></td>
+                  <td><img id="imgtabla" src="" alt="" /></td>
+                  <td><%= article.formattedDateAdmin %></td>
+                  <td><%= article.author.fullname %></td>
+                  <td>
+                    <div>
+                      <button type="button" class="btn btn-primary">
+                        Editar
+                      </button>
+                    </div>
+                    <div>
+                      <a href="/"
+                        ><button type="button" class="btn btn-danger">
+                          Eliminar
+                        </button></a
+                      >
+                    </div>
+                  </td>
+                </tr>
+
+              <% }); %>
+
             </tbody>
           </table>
         </div>

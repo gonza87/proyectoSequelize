@@ -1,49 +1,49 @@
-const {Sequelize, Model, DataTypes, BelongsTo} = require("sequelize");
+const { Sequelize, Model, DataTypes, BelongsTo } = require("sequelize");
 const express = require("express");
 const { DateTime } = require("luxon");
 const app = express();
 
-
-
-
-
-
 app.set("view engine", "ejs");
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 
-
-
-const sequelize = new Sequelize("dbsequelize", "root", "root",{
-    host: "127.0.0.1",
-    port: 3306,
-    dialect: "mysql",
+const sequelize = new Sequelize("dbsequelize", "root", "rootroot", {
+  host: "127.0.0.1",
+  port: 3306,
+  dialect: "mysql",
 });
 
-class Author extends Model{}
+class Author extends Model {}
 Author.init(
-    {
-        id:{
-            type: DataTypes.BIGINT.UNSIGNED,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        firstname:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        lastname:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        email:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        }
+  {
+    id: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {sequelize, modelName: "author"}
+    firstname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // Nueva propiedad para tener el nombre completo de los autores
+    fullname: {
+      type: DataTypes.VIRTUAL, // Virtual field, no se almacena en la base de datos
+      get() {
+        return this.firstname + " " + this.lastname; // Accede a las propiedades del objeto actual (this)
+      },
+    },
+  },
+  { sequelize, modelName: "author" }
 );
 
 class Article extends Model {}
@@ -67,17 +67,21 @@ Article.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // Nueva propiedad para la fecha formateada
-    formattedDate: {
+
+    // Nueva propiedad para la fecha formateada para la home
+    formattedDateHome: {
       type: DataTypes.VIRTUAL, // Virtual field, no se almacena en la base de datos
       get() {
         // Obtener el día en formato numérico
         const diaNumerico = this.createdAt.getDate();
 
         // Obtener el mes en formato string
-        const mesString = DateTime.fromJSDate(this.createdAt, {locale: 'es-Es'}).toFormat("MMMM"); // 'MMMM' representa el nombre completo del mes
+        const mesString = DateTime.fromJSDate(this.createdAt, {
+          locale: "es-Es",
+        }).toFormat("MMMM"); // 'MMMM' representa el nombre completo del mes
 
-        const mesConMayuscula = mesString.charAt(0).toUpperCase() + mesString.slice(1);
+        const mesConMayuscula =
+          mesString.charAt(0).toUpperCase() + mesString.slice(1);
 
         // Obtener el año en formato numérico
         const anoNumerico = this.createdAt.getFullYear();
@@ -86,82 +90,90 @@ Article.init(
         return `${diaNumerico} de ${mesConMayuscula} , ${anoNumerico}`;
       },
     },
+
+    // Nueva propiedad para la fecha formateada para la home
+    formattedDateAdmin: {
+      type: DataTypes.VIRTUAL, // Virtual field, no se almacena en la base de datos
+      get() {
+        const formattedDateTime = DateTime.fromJSDate(this.createdAt).toFormat(
+          "yyyy-MM-dd HH:mm"
+        ); // Formato personalizado "año mes día hora:minutos"
+
+        return formattedDateTime;
+      },
+    },
   },
   { sequelize, modelName: "article" }
 );
 
-class Comment extends Model{}
+class Comment extends Model {}
 Comment.init(
-    {
-        id:{
-            type: DataTypes.BIGINT.UNSIGNED,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        name:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        content:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-       
+  {
+    id: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {sequelize, modelName: "comment"}
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  { sequelize, modelName: "comment" }
 );
 //Relaciones
 Article.belongsTo(Author);
 Comment.belongsTo(Article);
 //Creacion de tablas
-sequelize.sync().then(()=>{
-console.log("Las tablas se crearon");
+sequelize.sync().then(() => {
+  console.log("Las tablas se crearon");
 });
 
-//ruta home//
+//Rutas
+
+app.get("/", async (req, res) => {
+  const articles = await Article.findAll({
+    order: [["createdAt", "DESC"]],
+    include: [{ model: Author }],
+  });
+  res.json(articles);
+});
+
 app.get("/home", async (req, res) => {
-    
-  const articles = await Article.findAll({order: [["createdAt", "DESC"]], include: [{model: Author}]});
-  
-  res.render("home", {articles});
+  const articles = await Article.findAll({
+    order: [["createdAt", "DESC"]],
+    include: [{ model: Author }],
+  });
 
-  console.log(articles);
-  
+  res.render("home", { articles });
 });
 
-app.get("/article", (req, res) => {
-    res.render("article")
-}); 
+app.get("/articles", (req, res) => {
+  res.render("articles");
+});
 
 app.get("/newarticle", (req, res) => {
   res.render("newarticle");
 });
- 
-app.get("/admin", (req, res) => {
-  res.render("admin");
-}); 
 
+app.get("/admin", async (req, res) => {
+  const articles = await Article.findAll({
+    order: [["createdAt", "DESC"]],
+    include: [{ model: Author }],
+  });
 
-
-
-//rutas
-app.get("/", async (req, res)=>{
-    const articles = await Article.findAll({order: [["createdAt", "DESC"]], include: [{model: Author}]});
-    res.json(articles);
-});
-app.get("/:id", async (req, res)=>{
-    res.json("Articulo por id");
+  res.render("admin", { articles });
 });
 
+app.get("/articles:id", async (req, res) => {
+  res.json("Articulo por id");
+});
 
-
-
-
-
-
-
-
-app.listen(3000, ()=>{
-    console.log("Servidor escuchando en puerto 3000");
-    console.log("http://localhost:3000");
-})
+app.listen(3000, () => {
+  console.log("Servidor escuchando en puerto 3000");
+  console.log("http://localhost:3000");
+});
