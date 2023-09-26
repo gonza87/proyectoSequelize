@@ -92,8 +92,14 @@ console.log("Las tablas se crearon");
 });
 
 //ruta home//
-app.get("/home", (req, res) => {
-  res.render("home");
+app.get("/home", async (req, res) => {
+    
+  const articles = await Article.findAll({order: [["createdAt", "DESC"]], include: [{model: Author}]});
+  
+  res.render("home", {articles});
+
+  console.log(articles);
+  
 });
 
 app.get("/article", (req, res) => {
@@ -119,6 +125,7 @@ app.get("/", async (req, res)=>{
 app.get("/:id", async (req, res)=>{
     res.json("Articulo por id");
 });
+
 
 
 

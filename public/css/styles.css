@@ -5,7 +5,7 @@
 
 /* seccionUno */
 .imagen {
-  background-image: url(../img/4a565a6a9523892dde76798da431c579\ \(1\).png);
+  background-image: url(../img/4a565a6a9523892dde76798da431c579\\(1\).png);
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -13,191 +13,182 @@
   flex-shrink: 0;
   overflow: hidden;
   display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 
 .imagen h1 {
   line-height: 1.5;
   color: #fff;
   text-align: center;
-  margin-bottom: 
   font-family: Open Sans;
-font-size: 80px;
-font-style: normal;
-font-weight: 800;
-line-height: normal;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
 }
 
 .imagen h5 {
-  
-  color: #fff; 
+  color: #fff;
   text-align: center;
   font-family: Open Sans;
-font-size: 24px;
-font-style: normal;
-font-weight: 300;
-line-height: normal;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
 }
 
 .list-group.list-group-flush {
   width: 792px;
-  margin: 0 auto; 
-  display: block; 
-  
+  margin: 0 auto;
+  display: block;
 }
 
+.list-group.list-group-flush h3 {
+  color: #000;
+  font-family: Open Sans;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+.list-group.list-group-flush h6 {
+  color: #76757d;
+  font-family: Lora;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+}
 
-.list-group.list-group-flush h3{
-color: #000;
-font-family: Open Sans;
-font-size: 36px;
-font-style: normal;
-font-weight: 800;
-line-height: normal;
+.iconos {
+  text-align: center;
+  font-size: 30px;
 }
-.list-group.list-group-flush h6{
-color: #76757D;
-font-family: Lora;
-font-size: 18px;
-font-style: italic;
-font-weight: 400;
-line-height: normal;    
-
-}
- 
-.iconos{
-    text-align: center;
-    font-size: 30px;
-}
-.cop{
-    text-align: center;
-    color: #76757D;
-font-family: Lora;
-font-size: 17.5px;
-font-style: italic;
-font-weight: 400;
-line-height: normal;
+.cop {
+  text-align: center;
+  color: #76757d;
+  font-family: Lora;
+  font-size: 17.5px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
 }
 
 /* seccionUno */
 
 /* seccionDos */
-.articulo{
-  color: #FFF;
-font-family: Open Sans;
-font-size: 48px;
-font-style: normal;
-font-weight: 800;
-line-height: normal;
+.articulo {
+  color: #fff;
+  font-family: Open Sans;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
 }
-.autor{
-  color: #FFF;
-font-family: Lora;
-font-size: 18px;
-font-style: italic;
-font-weight: 400;
-line-height: normal;
+.autor {
+  color: #fff;
+  font-family: Lora;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
 }
-.descripcion{
+.descripcion {
   color: #000;
-font-family: Lora;
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: Lora;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-h4{
+h4 {
   color: #000;
-font-family: Open Sans;
-font-size: 24px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+  font-family: Open Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
-#comentarioAutor{
-flex: 1 0 0;
-color: #6C757D;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-display: flex;
-width: 810px;
-padding: 10px;
-align-items: flex-start;
-gap: 10px;
-}
-#comentario{
+#comentarioAutor {
+  flex: 1 0 0;
+  color: #6c757d;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   display: flex;
-width: 810px;
-height: 144px;
-padding: 131px 0.979px 0.979px 797px;
-justify-content: flex-end;
-align-items: center;
-flex-shrink: 0;
-border-radius: 4px;
-border: 1px solid var(--Dark-gray, #CED4DA);
-background: #FFF;
-
+  width: 810px;
+  padding: 10px;
+  align-items: flex-start;
+  gap: 10px;
+}
+#comentario {
+  display: flex;
+  width: 810px;
+  height: 144px;
+  padding: 131px 0.979px 0.979px 797px;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid var(--Dark-gray, #ced4da);
+  background: #fff;
 }
 .agregarComentarios h4 {
-  margin-right:600px; 
+  margin-right: 600px;
 }
-.agregarComentarios{
-display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  text-align: center; 
+.agregarComentarios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .agregarComentarios input {
-  margin: 5px; 
+  margin: 5px;
 }
 
-.botonSend{
+.botonSend {
   display: flex;
-width: 804px;
-padding: 6px 12px;
-justify-content: center;
-align-items: center;
-gap: 8px;
-border-radius: 4px;
-background: var(--Primary, #0D6EFD);
-
+  width: 804px;
+  padding: 6px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  background: var(--Primary, #0d6efd);
 }
-.comentariosImpresos{
+.comentariosImpresos {
   margin: 10px;
-
 }
 
 .comentariosImpresos h4 {
-  margin-left:250px;
+  margin-left: 250px;
   color: #000;
-font-family: Open Sans;
-font-size: 24px;
-font-style: normal;
-font-weight: 700;
-line-height: normal; 
+  font-family: Open Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
-.coment{
+.coment {
   color: #000;
-font-family: Lora;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: Lora;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-.autor{
+.autor {
   color: #989898;
-font-family: Lora;
-font-size: 14px;
-font-style: italic;
-font-weight: 400;
-line-height: normal;
+  font-family: Lora;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
 }
 
 /* //////////seccionTres//////////// */

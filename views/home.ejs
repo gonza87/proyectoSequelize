@@ -26,14 +26,12 @@
   </head>
 
   <body>
-
-
     <section id="seccionUno">
       <div class="container">
         <nav class="navbar bg-dark">
           <div class="container-fluid">
             <a class="navbar-brand text-white" href="/home">Hack the blog</a>
-            <button type="button" class="btn btn-primary" >Admin</button>
+            <button type="button" class="btn btn-primary">Admin</button>
           </div>
         </nav>
 
@@ -44,23 +42,17 @@
         </div>
 
         <ul class="list-group list-group-flush">
+          <% for (article of articles) { %>
           <li class="list-group-item">
-            <h3>Man must explore, and this is exploration at its greatest</h3>
-            <h6>Creado por Marty McFly el 24 de Setiembre, 2022</h6>
+            <h3><%= article.title %></h3>
+            <h6>
+              Creado por <%= `${article.author.firstname}
+              ${article.author.lastname} el ${article.createdAt}` %>
+            </h6>
           </li>
-          <li class="list-group-item">
-            <h3>Man must explore, and this is exploration at its greatest</h3>
-            <h6>Creado por Marty McFly el 24 de Setiembre, 2022</h6>
-          </li>
-          <li class="list-group-item">
-            <h3>Man must explore, and this is exploration at its greatest</h3>
-            <h6>Creado por Marty McFly el 24 de Setiembre, 2022</h6>
-          </li>
-          <li class="list-group-item">
-            <h3>Man must explore, and this is exploration at its greatest</h3>
-            <h6>Creado por Marty McFly el 24 de Setiembre, 2022</h6>
-          </li>
+          <% } %>
         </ul>
+
         <hr />
         <div class="iconos">
           <i class="fa-brands fa-square-twitter"></i>
@@ -71,14 +63,7 @@
       </div>
     </section>
 
-    
-
-
- <!-- /////////////////////// -->
-
-
- 
-
+    <!-- /////////////////////// -->
 
     <!-- JS de Bootstrap -->
     <script
