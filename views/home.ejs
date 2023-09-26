@@ -44,7 +44,7 @@
         <ul class="list-group list-group-flush text-center">
           <% for (article of articles) { %>
           <li class="list-group-item">
-            <h3><%= article.title %></h3>
+           <a href="/article/<%= article.id %>"> <h3><%= article.title %></h3></a>
             <h6>
               Creado por <%= `${article.author.firstname}
               ${article.author.lastname} el ${article.formattedDateHome}` %>

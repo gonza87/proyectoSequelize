@@ -169,9 +169,12 @@ app.get("/admin", async (req, res) => {
   res.render("admin", { articles });
 });
 
-app.get("/articles/:id", async (req, res) => {
-    const article = await Article.findByPk(req.params.id);   
-  res.render("detail");
+app.get("/article/:id", async (req, res) => {
+  const article = await Article.findByPk(req.params.id)({
+    include: [{ model: Author }]
+  });
+
+ res.render("detail", { article });
 });
 
 
