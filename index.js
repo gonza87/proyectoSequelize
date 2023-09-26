@@ -173,7 +173,16 @@ app.get("/articles:id", async (req, res) => {
   res.json("Articulo por id");
 });
 
-app.listen(3000, () => {
-  console.log("Servidor escuchando en puerto 3000");
-  console.log("http://localhost:3000");
-});
+
+
+
+
+
+
+
+
+app.listen(3000, ()=>{
+    console.log("Servidor escuchando en puerto 3000");
+    console.log("http://localhost:3000");
+    console.log("http://localhost:3000/home");
+})
