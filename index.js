@@ -125,7 +125,7 @@ app.get("/home", async (req, res) => {
   
   res.render("home", {articles});
 
-  console.log(articles);
+  
   
 });
 
