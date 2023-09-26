@@ -145,10 +145,7 @@ app.get("/admin", (req, res) => {
 
 
 //rutas
-app.get("/", async (req, res)=>{
-    const articles = await Article.findAll({order: [["createdAt", "DESC"]], include: [{model: Author}]});
-    res.json(articles);
-});
+
 app.get("/:id", async (req, res)=>{
     res.json("Articulo por id");
 });
@@ -164,4 +161,5 @@ app.get("/:id", async (req, res)=>{
 app.listen(3000, ()=>{
     console.log("Servidor escuchando en puerto 3000");
     console.log("http://localhost:3000");
+    console.log("http://localhost:3000/home");
 })
