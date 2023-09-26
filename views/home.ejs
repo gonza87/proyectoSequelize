@@ -47,7 +47,7 @@
             <h3><%= article.title %></h3>
             <h6>
               Creado por <%= `${article.author.firstname}
-              ${article.author.lastname} el ${article.createdAt}` %>
+              ${article.author.lastname} el ${article.formattedDate}` %>
             </h6>
           </li>
           <% } %>

@@ -1,6 +1,14 @@
 const {Sequelize, Model, DataTypes, BelongsTo} = require("sequelize");
 const express = require("express");
+const { DateTime } = require("luxon");
+
 const app = express();
+
+
+
+
+
+
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({extended: true}));
@@ -39,28 +47,46 @@ Author.init(
     {sequelize, modelName: "author"}
 );
 
-class Article extends Model{}
+class Article extends Model {}
+
 Article.init(
-    {
-        id:{
-            type: DataTypes.BIGINT.UNSIGNED,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        title:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        content:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        image:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        }
+  {
+    id: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {sequelize, modelName: "article"}
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // Nueva propiedad para la fecha formateada
+    formattedDate: {
+      type: DataTypes.VIRTUAL, // Virtual field, no se almacena en la base de datos
+      get() {
+        // Obtener el día en formato numérico
+        const diaNumerico = this.createdAt.getDate();
+
+        // Obtener el mes en formato string
+        const mesString = DateTime.fromJSDate(this.createdAt).toFormat("MMMM"); // 'MMMM' representa el nombre completo del mes
+
+        // Obtener el año en formato numérico
+        const anoNumerico = this.createdAt.getFullYear();
+
+        // Formatear la fecha en el formato deseado
+        return `${diaNumerico} de ${mesString} , ${anoNumerico}`;
+      },
+    },
+  },
+  { sequelize, modelName: "article" }
 );
 
 class Comment extends Model{}
