@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 
-const sequelize = new Sequelize("dbsequelize", "root", "rootroot", {
+const sequelize = new Sequelize("dbsequelize", "root", "root", {
   host: "127.0.0.1",
   port: 3306,
   dialect: "mysql",
@@ -171,7 +171,7 @@ app.get("/admin", async (req, res) => {
 
 app.get("/article/:id", async (req, res) => {
   const article = await Article.findByPk(req.params.id, {
-    include: [{ model: Author }]
+    include: [{ model: Author},{model: Comment }]
   });
 
  res.render("detail", { article });
