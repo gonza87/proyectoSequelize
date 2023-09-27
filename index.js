@@ -2,13 +2,14 @@ require("dotenv").config();
 const { Sequelize, Model, DataTypes, BelongsTo } = require("sequelize");
 const express = require("express");
 const { DateTime } = require("luxon");
+const methodOverride = require('method-override');
 const app = express();
 
-app.set("view engine", "ejs");
-
-app.use(express.urlencoded({ extended: true }));
 app.set("views", __dirname + "/views");
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride('_method'));
 
 const sequelize = new Sequelize(
   "dbsequelize",
@@ -246,7 +247,20 @@ res.redirect(`/article/${req.body.idarticle}`)//redirijo a la misma pagina del a
 
 });
 
+//Eliminar 
 
+app.delete('/articles/:id', async (req, res) => {
+
+    const articleId = req.params.id;
+
+    // Elimina el artículo con el ID proporcionado
+    await Article.destroy({
+      where: { id: articleId },
+    });
+    // Redirecciona hacia la página de administración
+    res.redirect('/admin');
+
+});
 
 
 
