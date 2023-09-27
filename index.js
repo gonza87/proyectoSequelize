@@ -195,7 +195,7 @@ app.post("/article", async (req, res) => {
     title: req.body.title,
     content: req.body.content,
     image: req.body.image,
-    authorId: 1,
+    authorId: req.body.author,
   });
   res.redirect("/admin");
 });

@@ -46,7 +46,10 @@
               <!-- TO DO: Bucle para recorrer los IDS de usuarios -->
               <option selected>Open this select menu</option>
               
-                <option value=""></option>
+              <option selected>Open this select menu</option>
+              <% for (author of authors){%>
+                <option value="<%= author.id %>"><%= author.firstname %></option>
+                <%} %>
                 
               
              
