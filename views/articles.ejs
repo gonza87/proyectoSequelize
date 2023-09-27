@@ -50,10 +50,20 @@
         </ul>
         <hr />
         <div class="agregarComentarios">
-          <h4>Add your comment</h4>
-          <input id="comentarioAutor" type="text" placeholder="Name" />
-          <input id="comentario" type="text" />
-          <button class="botonSend text-white">send</button>
+          <form action="/newcoment" method="post">
+            <h4>Add your comment</h4>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label"></label>
+              <input name="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name">
+            </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"></label>
+            <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+          </div>
+          <input type="hidden" id="idarticle" name="idarticle" value="<%= article.id %>">
+          <button type="submit" class="botonSend text-white">send</button>
+          </form>
+          
         </div>
 
         <div class="comentariosImpresos">

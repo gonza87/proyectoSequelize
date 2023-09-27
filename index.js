@@ -227,6 +227,18 @@ app.post("/article", async (req, res) => {
 });
 
 
+//crear comentarios
+app.post("/newcoment", async (req, res)=>{
+  await Comment.create({
+    name: req.body.name,
+    content: req.body.content,
+    articleId: req.body.idarticle,
+  });
+res.redirect(`/article/${req.body.idarticle}`)//redirijo a la misma pagina del articulo
+
+});
+
+
 
 app.listen(3000, () => {
   console.log("Servidor escuchando en puerto 3000");
