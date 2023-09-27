@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 
-const sequelize = new Sequelize("dbsequelize", "root", "root", {
+const sequelize = new Sequelize("dbsequelize", "root", "rootroot", {
   host: "127.0.0.1",
   port: 3306,
   dialect: "mysql",
@@ -125,20 +125,15 @@ Comment.init(
   },
   { sequelize, modelName: "comment" }
 );
+
 //Relaciones
-<<<<<<< Updated upstream
 Article.belongsTo(Author);
 Comment.belongsTo(Article);
 Article.hasMany(Comment);
 
-=======
-Article.belongsTo(Author); 
-Article.hasMany(Comment, { foreignKey: 'articleId' });
-Comment.belongsTo(Article, { foreignKey: 'articleId' });
->>>>>>> Stashed changes
 //Creacion de tablas
 sequelize.sync().then(() => {
-console.log("Las tablas se crearon");
+  console.log("Las tablas se crearon");
 });
 
 //Rutas
@@ -177,58 +172,34 @@ app.get("/admin", async (req, res) => {
   res.render("admin", { articles });
 });
 
-<<<<<<< Updated upstream
 app.get("/article/:id", async (req, res) => {
   const article = await Article.findByPk(req.params.id, {
-    include: [{ model: Author}, { model: Comment}]
+    include: [{ model: Author }, { model: Comment }],
   });
-  //console.log(article)
-=======
->>>>>>> Stashed changes
+  console.log(article.Comment.content);
 
+  res.send("hola");
 
-app.get("/article/:id", async (req, res) => {
-    const article = await Article.findByPk(req.params.id, {
-        include: [{ model: Author }, { model: Comment }] 
-      });
-      console.log(article.Comment.content);
-
-      res.send("hola") 
-
-  // res.render("detail", { article }); 
+  // res.render("detail", { article });
 });
 
-
-app.get("/new",async (req, res)=>{
+app.get("/new", async (req, res) => {
   const authors = await Author.findAll();
-  res.render("newarticle", {authors});
-  
-
+  res.render("newarticle", { authors });
 });
 
-app.post("/article",async (req, res)=>{
+app.post("/article", async (req, res) => {
   await Article.create({
-          
-      title: req.body.title,
-      content: req.body.content,
-      image:req.body.image,
-      authorId: req.body.author,
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+    authorId: req.body.author,
   });
   res.redirect("/admin");
-      
 });
 
-
-
-
-
-
-
-
-
-
-app.listen(3000, ()=>{
-    console.log("Servidor escuchando en puerto 3000");
-    console.log("http://localhost:3000");
-    console.log("http://localhost:3000/home");
-})
+app.listen(3000, () => {
+  console.log("Servidor escuchando en puerto 3000");
+  console.log("http://localhost:3000");
+  console.log("http://localhost:3000/home");
+});
