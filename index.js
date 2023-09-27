@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 
-const sequelize = new Sequelize("dbsequelize", "root", "rootroot", {
+const sequelize = new Sequelize("dbsequelize", "root", "root", {
   host: "127.0.0.1",
   port: 3306,
   dialect: "mysql",
@@ -178,6 +178,26 @@ app.get("/article/:id", async (req, res) => {
   //console.log(article)
 
  res.render("detail", { article });
+});
+
+
+app.get("/new",async (req, res)=>{
+  const authors = await Author.findAll();
+  res.render("newarticle", {authors});
+  
+
+});
+
+app.post("/article",async (req, res)=>{
+  await Article.create({
+          
+      title: req.body.title,
+      content: req.body.content,
+      image:req.body.image,
+      authorId: req.body.author,
+  });
+  res.redirect("/");
+      
 });
 
 
