@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 
-const sequelize = new Sequelize("dbsequelize", "root", "root", {
+const sequelize = new Sequelize("dbsequelize", "root", "rootroot", {
   host: "127.0.0.1",
   port: 3306,
   dialect: "mysql",
@@ -196,7 +196,7 @@ app.post("/article",async (req, res)=>{
       image:req.body.image,
       authorId: req.body.author,
   });
-  res.redirect("/");
+  res.redirect("/admin");
       
 });
 
