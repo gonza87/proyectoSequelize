@@ -181,6 +181,26 @@ app.get("/article/:id", async (req, res) => {
 });
 
 
+app.get("/new",async (req, res)=>{
+  const authors = await Author.findAll();
+  res.render("newarticle", {authors});
+  
+
+});
+
+app.post("/article",async (req, res)=>{
+  await Article.create({
+          
+      title: req.body.title,
+      content: req.body.content,
+      image:req.body.image,
+      authorId: req.body.author,
+  });
+  res.redirect("/");
+      
+});
+
+
 
 
 
