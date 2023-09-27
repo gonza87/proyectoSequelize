@@ -134,7 +134,7 @@ Comment.init(
 
 //Relaciones
 Article.belongsTo(Author);
-Comment.belongsTo(Article);
+Comment.hasOne(Article);
 Article.hasMany(Comment);
 
 //Creacion de tablas
@@ -159,6 +159,7 @@ app.get("/home", async (req, res) => {
   });
 
   res.render("home", { articles });
+  
 });
 
 app.get("/articles", (req, res) => {
@@ -178,12 +179,21 @@ app.get("/admin", async (req, res) => {
   res.render("admin", { articles });
 });
 
-app.get("/article/:id", async (req, res) => {
-  const article = await Article.findByPk(req.params.id, {
+// app.get("/article/:id", async (req, res) => {
+//   const article = await Article.findByPk(req.params.id, {
+//     include: [{ model: Author }, { model: Comment }],
+//   });
+//   res.render("detail", { article });
+// });
+
+ app.get("/article/:id", async (req, res) => {
+   const article = await Article.findByPk(req.params.id, {
     include: [{ model: Author }, { model: Comment }],
-  });
-  res.render("detail", { article });
-});
+   });
+   res.render("articles", {article});
+   //res.json(article)
+ });
+
 
 app.get("/new", async (req, res) => {
   const authors = await Author.findAll();
