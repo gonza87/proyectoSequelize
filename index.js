@@ -158,7 +158,7 @@ app.get("/articles", (req, res) => {
   res.render("articles");
 });
 
-app.get("/newarticle", (req, res) => {
+app.get("/articles/new", (req, res) => {
   res.render("newarticle");
 });
 
