@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { Sequelize, Model, DataTypes, BelongsTo } = require("sequelize");
 const express = require("express");
 const { DateTime } = require("luxon");
@@ -9,11 +10,16 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 
-const sequelize = new Sequelize("dbsequelize", "root", "rootroot", {
-  host: "127.0.0.1",
-  port: 3306,
-  dialect: "mysql",
-});
+const sequelize = new Sequelize(
+  "dbsequelize",
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: "127.0.0.1",
+    port: 3306,
+    dialect: "mysql",
+  }
+);
 
 class Author extends Model {}
 Author.init(
@@ -176,11 +182,7 @@ app.get("/article/:id", async (req, res) => {
   const article = await Article.findByPk(req.params.id, {
     include: [{ model: Author }, { model: Comment }],
   });
-  console.log(article.Comment.content);
-
-  res.send("hola");
-
-  // res.render("detail", { article });
+  res.render("detail", { article });
 });
 
 app.get("/new", async (req, res) => {
@@ -193,7 +195,7 @@ app.post("/article", async (req, res) => {
     title: req.body.title,
     content: req.body.content,
     image: req.body.image,
-    authorId: req.body.author,
+    authorId: 1,
   });
   res.redirect("/admin");
 });
