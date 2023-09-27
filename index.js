@@ -205,8 +205,16 @@ app.get("/admin", async (req, res) => {
  app.get("/article/:id", async (req, res) => {
    const article = await Article.findByPk(req.params.id, {
     include: [{ model: Author }, { model: Comment }],
+  
    });
-   res.render("articles", {article});
+   const cantidad = await Comment.count({//cuento los comentarios que tiene un articulo
+    where: {
+      articleId: req.params.id // Aquí defines tu condición
+    }
+    
+  });
+  
+  res.render("articles", {article, cantidad});
    
  });
 
