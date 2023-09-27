@@ -36,7 +36,12 @@
             </h6>
                <h3>Section Coments</h3>
               <ul>
-               
+                <% article.comments.forEach(comment => { %>
+                <li>
+                    <p><strong><%= comment.name %>:</strong></p>
+                    <p><%= comment.content %></p>
+                  </li>
+                <% }); %>
               </ul>
 
           </div>

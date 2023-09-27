@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 
-const sequelize = new Sequelize("dbsequelize", "root", "root", {
+const sequelize = new Sequelize("dbsequelize", "root", "rootroot", {
   host: "127.0.0.1",
   port: 3306,
   dialect: "mysql",
@@ -132,7 +132,7 @@ Article.hasMany(Comment);
 
 //Creacion de tablas
 sequelize.sync().then(() => {
-  console.log("Las tablas se crearon");
+console.log("Las tablas se crearon");
 });
 
 //Rutas
@@ -176,8 +176,8 @@ app.get("/article/:id", async (req, res) => {
     include: [{ model: Author}, { model: Comment}]
   });
   //console.log(article)
-res.json(article)
- //res.render("detail", { article });
+
+ res.render("detail", { article });
 });
 
 
