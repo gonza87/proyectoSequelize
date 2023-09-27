@@ -200,6 +200,8 @@ app.post("/article", async (req, res) => {
   res.redirect("/admin");
 });
 
+/* hola */
+
 app.listen(3000, () => {
   console.log("Servidor escuchando en puerto 3000");
   console.log("http://localhost:3000");
