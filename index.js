@@ -126,10 +126,16 @@ Comment.init(
   { sequelize, modelName: "comment" }
 );
 //Relaciones
+<<<<<<< Updated upstream
 Article.belongsTo(Author);
 Comment.belongsTo(Article);
 Article.hasMany(Comment);
 
+=======
+Article.belongsTo(Author); 
+Article.hasMany(Comment, { foreignKey: 'articleId' });
+Comment.belongsTo(Article, { foreignKey: 'articleId' });
+>>>>>>> Stashed changes
 //Creacion de tablas
 sequelize.sync().then(() => {
 console.log("Las tablas se crearon");
@@ -171,13 +177,25 @@ app.get("/admin", async (req, res) => {
   res.render("admin", { articles });
 });
 
+<<<<<<< Updated upstream
 app.get("/article/:id", async (req, res) => {
   const article = await Article.findByPk(req.params.id, {
     include: [{ model: Author}, { model: Comment}]
   });
   //console.log(article)
+=======
+>>>>>>> Stashed changes
 
- res.render("detail", { article });
+
+app.get("/article/:id", async (req, res) => {
+    const article = await Article.findByPk(req.params.id, {
+        include: [{ model: Author }, { model: Comment }] 
+      });
+      console.log(article.Comment.content);
+
+      res.send("hola") 
+
+  // res.render("detail", { article }); 
 });
 
 
