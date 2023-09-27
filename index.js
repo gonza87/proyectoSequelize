@@ -248,6 +248,9 @@ res.redirect(`/article/${req.body.idarticle}`)//redirijo a la misma pagina del a
 
 
 
+
+
+
 app.listen(3000, () => {
   console.log("Servidor escuchando en puerto 3000");
   console.log("http://localhost:3000");
