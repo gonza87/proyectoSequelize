@@ -128,6 +128,27 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    formattedDateHome: {
+      type: DataTypes.VIRTUAL, // Virtual field, no se almacena en la base de datos
+      get() {
+        // Obtener el día en formato numérico
+        const diaNumerico = this.createdAt.getDate();
+
+        // Obtener el mes en formato string
+        const mesString = DateTime.fromJSDate(this.createdAt, {
+          locale: "es-Es",
+        }).toFormat("MMMM"); // 'MMMM' representa el nombre completo del mes
+
+        const mesConMayuscula =
+          mesString.charAt(0).toUpperCase() + mesString.slice(1);
+
+        // Obtener el año en formato numérico
+        const anoNumerico = this.createdAt.getFullYear();
+
+        // Formatear la fecha en el formato deseado
+        return `${diaNumerico} de ${mesConMayuscula} , ${anoNumerico}`;
+      },
+    },
   },
   { sequelize, modelName: "comment" }
 );
@@ -179,19 +200,14 @@ app.get("/admin", async (req, res) => {
   res.render("admin", { articles });
 });
 
-// app.get("/article/:id", async (req, res) => {
-//   const article = await Article.findByPk(req.params.id, {
-//     include: [{ model: Author }, { model: Comment }],
-//   });
-//   res.render("detail", { article });
-// });
+
 
  app.get("/article/:id", async (req, res) => {
    const article = await Article.findByPk(req.params.id, {
     include: [{ model: Author }, { model: Comment }],
    });
    res.render("articles", {article});
-   //res.json(article)
+   
  });
 
 
@@ -210,7 +226,7 @@ app.post("/article", async (req, res) => {
   res.redirect("/admin");
 });
 
-/* hola */
+
 
 app.listen(3000, () => {
   console.log("Servidor escuchando en puerto 3000");

@@ -53,24 +53,28 @@
           <h4>Add your comment</h4>
           <input id="comentarioAutor" type="text" placeholder="Name" />
           <input id="comentario" type="text" />
-          <button class="botonSend">send</button>
+          <button class="botonSend text-white">send</button>
         </div>
 
         <div class="comentariosImpresos">
           <h4>Comments (2)</h4>
           <ul class="list-group list-group-flush">
            
-            <li class="list-group-item">
-              <p class="coment">
-                “Collaboratively administrate empowered markets via
-                plug-and-play networks. Dynamically procrastinate B2C users
-                after installed base benefits. Dramatically visualize customer
-                directed convergence without revolutionary ROI.”
-              </p>
-              <p class="autor">
-                Creado por Marty McFly el 24 de Setiembre, 2022
-              </p>
-            </li>
+              <% for (coment of article.comments) {%>
+                <li>
+                  <p class="coment">
+                    <%= coment.content %>
+                  </p>
+                  <p class="autor">
+                    Creado por <%= `${coment.name} el ${coment.formattedDateHome}` %>
+                  </p>
+                  <hr>
+                </li>
+                <% } %>
+            
+           
+              
+            
         
           </ul>
         </div>
