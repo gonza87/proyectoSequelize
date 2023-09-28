@@ -262,6 +262,18 @@ app.delete('/articles/:id', async (req, res) => {
 
 });
 
+//editar articulo
+app.get("/edit/:id", async (req, res)=>{
+    
+  const article = await Article.findByPk(req.params.id)
+  res.render("edit", {article});
+});
+app.patch("/edit/:id", async (req,res)=>{
+  const article = await Article.findByPk(req.params.id)
+  await article.update({ title: req.body.title, content:req.body.content, image:req.body.image });
+  res.redirect("/admin")
+});
+
 
 
 
