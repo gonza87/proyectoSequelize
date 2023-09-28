@@ -64,7 +64,6 @@
                       action="/articles/<%= article.id %>?_method=DELETE"
                       method="POST"
                     >
-               
                       <button type="submit" class="btn btn-danger">
                         Eliminar
                       </button>
@@ -79,12 +78,7 @@
         </div>
       </div>
 
-      <div class="iconos text-center">
-        <i class="fa-brands fa-square-twitter"></i>
-        <i class="fa-brands fa-square-github"></i>
-        <i class="fa-brands fa-square-facebook"></i>
-      </div>
-      <div class="cop text-center">Copyright © Hack Academy 2022</div>
+      <%- include("partials/footer") %>
     </div>
 
     <script
