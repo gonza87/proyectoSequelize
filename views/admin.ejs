@@ -55,9 +55,11 @@
                 <td><%= article.author.fullname %></td>
                 <td>
                   <div>
-                    <button type="button" class="btn btn-primary">
-                      Editar
-                    </button>
+                    <a href="<%= `/edit/${article.id}` %>"
+                      ><button type="button" class="btn btn-primary">
+                        Editar
+                      </button></a
+                    >
                   </div>
                   <div>
                     <form
