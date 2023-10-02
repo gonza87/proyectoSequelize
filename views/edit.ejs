@@ -21,46 +21,53 @@
   <body>
     <%- include("partials/nav") %>
     <div class="container">
-      <h1>Editar Articulo</h1>
-      <form action="<%= `/edit/${article.id}/?_method=PATCH` %>" method="post">
-        <div class="recuadro">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label"
-              >Title</label
-            >
-            <input
-              name="title"
-              type="text"
-              class="form-control"
-              id="exampleFormControlInput1"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label"
-              >Content
-            </label>
-            <textarea
-              name="content"
-              class="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-            ></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label"
-              >Image</label
-            >
-            <input
-              name="image"
-              type="text"
-              class="form-control"
-              id="exampleFormControlInput1"
-            />
-          </div>
+      <div class="row">
+        <h1>Editar Articulo</h1>
+        <div class="col-12 d-flex justify-content-center">
+          <form
+            action="<%= `/edit/${article.id}/?_method=PATCH` %>"
+            method="post"
+          >
+            <div class="recuadro">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Title</label
+                >
+                <input
+                  name="title"
+                  type="text"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Content
+                </label>
+                <textarea
+                  name="content"
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Image</label
+                >
+                <input
+                  name="image"
+                  type="text"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                />
+              </div>
 
-          <button type="submit" class="btn btn-primary mt-1">Enviar</button>
+              <button type="submit" class="btn btn-primary mt-1">Enviar</button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
       <%- include("partials/footer") %>
     </div>
 

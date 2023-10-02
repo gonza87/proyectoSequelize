@@ -54,7 +54,7 @@
                 <td><%= article.formattedDateAdmin %></td>
                 <td><%= article.author.fullname %></td>
                 <td>
-                  <div>
+                  <div class="mb-2">
                     <a href="<%= `/edit/${article.id}` %>"
                       ><button type="button" class="btn btn-primary">
                         Editar
@@ -79,8 +79,9 @@
           </table>
         </div>
       </div>
-
+            <div class="iconos">
       <%- include("partials/footer") %>
+      </div>
     </div>
 
     <script
